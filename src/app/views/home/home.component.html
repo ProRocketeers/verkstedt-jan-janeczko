@@ -1,0 +1,21 @@
+<app-layout title="All repositories" linkUrl="/stars" linkLabel="Starred repositories">
+  <ng-container *ngIf="!isLoading() && !hasError(); else loading">
+    <app-repository-list
+      [repositories]="repositories()"
+      (onAddToStars)="storeService.addToStarred($event)"
+      (onRemoveFromStars)="storeService.removeFromStarred($event)"
+    ></app-repository-list>
+  </ng-container>
+
+
+  <ng-template #loading>
+    <ng-container *ngIf="isLoading(); else error">
+      <div>LOADING</div>
+    </ng-container>
+  </ng-template>
+
+
+  <ng-template #error>
+    <div>ERROR</div>
+  </ng-template>
+</app-layout>
