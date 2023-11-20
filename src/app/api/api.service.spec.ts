@@ -45,6 +45,7 @@ describe('ApiService', () => {
     const req = httpTestingController.expectOne(
         'https://api.github.com/search/repositories?q=created:%3E2023-11-13&sort=stars&order=desc'
     );
+
     expect(req.request.method).toBe('GET');
 
     req.flush(mockRepositories);
