@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {ApiService} from "../api/api.service";
 import {BehaviorSubject, distinctUntilChanged, Observable, from} from "rxjs";
 import {AppState, RepositoryState, Repository, RepositoryWithStars} from "../core/core.types";
 import {map, mergeMap, toArray} from "rxjs/operators";
@@ -11,7 +10,7 @@ const LS_STARRED_KEY = 'starred_repositories'
 })
 export class StoreService {
 
-  stateSubject: BehaviorSubject<AppState> = new BehaviorSubject<AppState>({
+  static getInitState = (): AppState => ({
     repositories: {
       items: [],
       hasError: false,
@@ -19,6 +18,8 @@ export class StoreService {
     },
     starred: []
   });
+
+  stateSubject: BehaviorSubject<AppState> = new BehaviorSubject<AppState>(StoreService.getInitState());
 
   constructor() {
       const cachedStarred = localStorage.getItem(LS_STARRED_KEY);

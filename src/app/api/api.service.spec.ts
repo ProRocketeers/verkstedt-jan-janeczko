@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { ApiService } from './api.service';
-import {CommonModule} from "@angular/common";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {CoreModule} from "../core/core.module";
 import {RepositoriesDTO, Repository} from "../core/core.types";
