@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {ApiService} from "../api/api.service";
-import {BehaviorSubject, distinctUntilChanged, Observable} from "rxjs";
-import {AppState, RepositoryState, Repository} from "../core/core.types";
-import {map} from "rxjs/operators";
+import {BehaviorSubject, distinctUntilChanged, Observable, from} from "rxjs";
+import {AppState, RepositoryState, Repository, RepositoryWithStars} from "../core/core.types";
+import {map, mergeMap, toArray} from "rxjs/operators";
 
 const LS_STARRED_KEY = 'starred_repositories'
 
@@ -21,7 +21,7 @@ export class StoreService {
   });
 
   constructor() {
-      const cachedStarred = localStorage.getItem(LS_STARRED_KEY)
+      const cachedStarred = localStorage.getItem(LS_STARRED_KEY);
 
       if (cachedStarred) {
         const starred: Repository[] = JSON.parse(cachedStarred);
@@ -47,9 +47,31 @@ export class StoreService {
     });
   }
 
-  get repositories$(): Observable<RepositoryState> {
+  get repositories$(): Observable<RepositoryWithStars[]> {
     return this.state$.pipe(
-      map((data) => data.repositories)
+      map((data) => ({
+        repositories: data.repositories.items,
+        starredMap: new Map<number, Repository>(data.starred.map((repository) => [repository.id, repository]))
+      })),
+      mergeMap(({ repositories, starredMap }) => from(repositories).pipe(
+        map((repository) => ({
+          ...repository,
+          isStarred: !!starredMap.get(repository.id)
+        })),
+        toArray()
+      ))
+    );
+  }
+
+  get repositoriesLoading$(): Observable<boolean> {
+    return this.state$.pipe(
+      map((data) => data.repositories.isLoading)
+    );
+  }
+
+  get repositoriesHasError$(): Observable<boolean> {
+    return this.state$.pipe(
+      map((data) => data.repositories.hasError)
     );
   }
 
@@ -94,9 +116,16 @@ export class StoreService {
       }
   }
 
-  get starred$(): Observable<Repository[]> {
+  get starred$(): Observable<RepositoryWithStars[]> {
         return this.state$.pipe(
-            map((data) => data.starred)
+            map((data) => data.starred),
+            mergeMap((repositories) => from(repositories).pipe(
+              map((repository) => ({
+                ...repository,
+                isStarred: true
+              })),
+              toArray()
+            ))
         );
   }
 }

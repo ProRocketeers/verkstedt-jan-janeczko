@@ -9,11 +9,8 @@ import {toSignal} from "@angular/core/rxjs-interop";
 })
 export class StarsComponent {
 
-  state  = toSignal(this.storeService.starred$);
-
-  repositories = computed(() => {
-    const starred = this.state();
-    return !starred ? [] : starred;
+  repositories  = toSignal(this.storeService.starred$, {
+    initialValue: []
   });
 
   constructor(

@@ -12,8 +12,13 @@ export class ApiService {
   ) {}
 
   fetchRepositories(): Observable<Repository[]> {
-    // TODO datum na zacatek tydne
-    return this.http.get<RepositoriesDTO>('https://api.github.com/search/repositories?q=created:>2017-01-10&sort=stars&order=desc')
-      .pipe(map((data) => data.items))
+    const date = new Date();
+    date.setDate(date.getDate() - 7);
+
+    const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    const url = `https://api.github.com/search/repositories?q=created:>${dateString}&sort=stars&order=desc`;
+
+    return this.http.get<RepositoriesDTO>(encodeURI(url))
+      .pipe(map((data) => data.items));
   }
 }

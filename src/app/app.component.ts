@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // TODO remove log
+    // state log
     this.storeService.state$.subscribe((state) => console.log('state', state));
 
     this.loadData();

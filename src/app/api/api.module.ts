@@ -13,4 +13,4 @@ import {CoreModule} from "../core/core.module";
   ],
   providers: [ApiService]
 })
-export class ApiModule { }
+export class ApiModule {}

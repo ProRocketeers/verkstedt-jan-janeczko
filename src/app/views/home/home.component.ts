@@ -9,21 +9,16 @@ import {toSignal} from "@angular/core/rxjs-interop";
 })
 export class HomeComponent {
 
-  state  = toSignal(this.storeService.repositories$);
-
-  repositories = computed(() => {
-    const data = this.state()
-    return !data ? [] : data.items
+  repositories = toSignal(this.storeService.repositories$, {
+    initialValue: []
   });
 
-  isLoading = computed(() => {
-    const data = this.state()
-    return !data ? false : data.isLoading
+  isLoading = toSignal(this.storeService.repositoriesLoading$, {
+    initialValue: true
   });
 
-  hasError = computed(() => {
-    const data = this.state()
-    return !data ? true : data.hasError
+  hasError = toSignal(this.storeService.repositoriesHasError$, {
+    initialValue: false
   });
 
   constructor(

@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { StarsComponent } from './stars/stars.component';
 import {ComponentsModule} from "../components/components.module";
 import {RouterLink} from "@angular/router";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 
@@ -12,10 +13,11 @@ import {RouterLink} from "@angular/router";
     HomeComponent,
     StarsComponent
   ],
-    imports: [
-        CommonModule,
-        ComponentsModule,
-        RouterLink
-    ]
+  imports: [
+    CommonModule,
+    ComponentsModule,
+    RouterLink,
+    MatProgressSpinnerModule,
+  ]
 })
 export class ViewsModule {}

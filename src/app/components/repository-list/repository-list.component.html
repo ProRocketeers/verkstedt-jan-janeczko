@@ -29,7 +29,9 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let element">
-      <button mat-raised-button color="primary" (click)="onAddToStars.emit(element)">Add to stars</button>
+      <button mat-raised-button color="primary" (click)="onButtonClick(element)">
+        {{ element.isStarred ? 'Remove from stars' : 'Add to stars' }}
+      </button>
     </td>
   </ng-container>
 
