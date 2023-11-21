@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {Repository, RepositoryWithStars} from "../../core/core.types";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Repository, RepositoryWithStars } from '../../core/core.types';
 
 @Component({
   selector: 'app-repository-list',
@@ -8,21 +8,21 @@ import {Repository, RepositoryWithStars} from "../../core/core.types";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RepositoryListComponent {
-
   @Input()
   repositories: RepositoryWithStars[] = [];
 
   @Output()
-  onAddToStars = new EventEmitter<Repository>();
+  addToStars = new EventEmitter<Repository>();
 
   @Output()
-  onRemoveFromStars = new EventEmitter<Repository>();
-
-  displayedColumns = ['id', 'name', 'html_url', 'description', 'stargazers_count', 'actions'];
+  removeFromStars = new EventEmitter<Repository>();
 
   onButtonClick(repository: RepositoryWithStars) {
-    const emitter = repository.isStarred ? this.onRemoveFromStars : this.onAddToStars;
+    const emitter = repository.isStarred ? this.removeFromStars : this.addToStars;
     emitter.emit(repository);
   }
 
+  trackByRepositoryId(index: number, item: RepositoryWithStars): number {
+    return item.id;
+  }
 }

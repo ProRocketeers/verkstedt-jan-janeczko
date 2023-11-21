@@ -1,0 +1,21 @@
+.repository-list {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  .row {
+    display: grid;
+    grid-template-columns: 100px 300px 500px 1fr 100px 200px;
+    border-bottom: 1px solid darkgray;
+    justify-content: start;
+    padding: 20px 0;
+
+    &.header-row {
+      font-weight: bold;
+      padding: 10px 0;
+    }
+
+    & > div {
+      padding: 0 10px;
+    }
+  }
+}

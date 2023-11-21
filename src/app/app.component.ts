@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ApiService} from "./api/api.service";
-import {StoreService} from "./store/store.service";
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from './api/api.service';
+import { StoreService } from './store/store.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,6 @@ import {StoreService} from "./store/store.service";
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-
   constructor(
     private readonly apiService: ApiService,
     private readonly storeService: StoreService
@@ -16,7 +15,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // state log
-    this.storeService.state$.subscribe((state) => console.log('state', state));
+    this.storeService.state$.subscribe(state => console.log('state', state));
 
     this.loadData();
   }
@@ -28,18 +27,19 @@ export class AppComponent implements OnInit {
       items: []
     });
 
-    this.apiService.fetchRepositories()
-      .subscribe({
-        next: (data) => this.storeService.setRepositories({
+    this.apiService.fetchRepositories().subscribe({
+      next: data =>
+        this.storeService.setRepositories({
           isLoading: false,
           hasError: false,
           items: data
         }),
-        error: () => this.storeService.setRepositories({
+      error: () =>
+        this.storeService.setRepositories({
           isLoading: false,
           hasError: true,
           items: []
         })
-      });
+    });
   }
 }

@@ -2,16 +2,13 @@
   <ng-container *ngIf="!isLoading() && !hasError()">
     <app-repository-list
       [repositories]="repositories()"
-      (onAddToStars)="storeService.addToStarred($event)"
-      (onRemoveFromStars)="storeService.removeFromStarred($event)"
-    ></app-repository-list>
+      (addToStars)="storeService.addToStarred($event)"
+      (removeFromStars)="storeService.removeFromStarred($event)" />
   </ng-container>
-
 
   <ng-container *ngIf="isLoading() && !hasError()">
     <div>Loading...</div>
   </ng-container>
-
 
   <ng-container *ngIf="hasError()">
     <div>Error</div>

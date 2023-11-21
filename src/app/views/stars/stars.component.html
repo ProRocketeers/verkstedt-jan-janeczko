@@ -1,7 +1,6 @@
 <app-layout title="Starred repositories" linkUrl="/" linkLabel="All repositories">
-    <app-repository-list
-            [repositories]="repositories()"
-            (onAddToStars)="storeService.addToStarred($event)"
-            (onRemoveFromStars)="storeService.removeFromStarred($event)"
-    ></app-repository-list>
+  <app-repository-list
+    [repositories]="repositories()"
+    (addToStars)="storeService.addToStarred($event)"
+    (removeFromStars)="storeService.removeFromStarred($event)"></app-repository-list>
 </app-layout>

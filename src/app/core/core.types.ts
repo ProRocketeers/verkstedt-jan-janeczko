@@ -3,26 +3,26 @@ export type Repository = {
   name: string;
   html_url: string;
   description?: string;
-  stargazers_count: number
-}
+  stargazers_count: number;
+};
 
 export type RepositoriesDTO = {
   items: Repository[];
   total_count: number;
   incomplete_results: boolean;
-}
+};
 
 export type RepositoryState = {
   items: Repository[];
   isLoading: boolean;
   hasError: boolean;
-}
+};
 
 export type AppState = {
   repositories: RepositoryState;
-  starred: Repository[]
-}
+  starred: Repository[];
+};
 
 export type RepositoryWithStars = Repository & {
   isStarred: boolean;
-}
+};

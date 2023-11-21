@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-layout',
@@ -6,7 +6,6 @@ import {Component, Input} from '@angular/core';
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
-
   @Input()
   title: string = '';
 
@@ -15,5 +14,4 @@ export class LayoutComponent {
 
   @Input()
   linkLabel: string = '';
-
 }
