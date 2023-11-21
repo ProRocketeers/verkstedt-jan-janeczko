@@ -48,7 +48,12 @@ describe('ApiService', () => {
       expect(repositories[1].name).toBe('Repository 2');
     });
 
-    const req = httpTestingController.expectOne('https://api.github.com/search/repositories?q=created:%3E2023-11-13&sort=stars&order=desc');
+    const date = new Date();
+    date.setDate(date.getDate() - 7);
+    const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    const url = encodeURI(`https://api.github.com/search/repositories?q=created:>${dateString}&sort=stars&order=desc`);
+
+    const req = httpTestingController.expectOne(url);
 
     expect(req.request.method).toBe('GET');
 
