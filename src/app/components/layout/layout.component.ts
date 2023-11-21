@@ -7,11 +7,11 @@ import { Component, Input } from '@angular/core';
 })
 export class LayoutComponent {
   @Input()
-  title: string = '';
+  public title: string = '';
 
   @Input()
-  linkUrl: string = '';
+  public linkUrl: string = '';
 
   @Input()
-  linkLabel: string = '';
+  public linkLabel: string = '';
 }

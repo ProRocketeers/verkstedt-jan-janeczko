@@ -9,20 +9,20 @@ import { Repository, RepositoryWithStars } from '../../core/core.types';
 })
 export class RepositoryListComponent {
   @Input()
-  repositories: RepositoryWithStars[] = [];
+  public repositories: RepositoryWithStars[] = [];
 
   @Output()
-  addToStars = new EventEmitter<Repository>();
+  public addToStars = new EventEmitter<Repository>();
 
   @Output()
-  removeFromStars = new EventEmitter<Repository>();
+  public removeFromStars = new EventEmitter<Repository>();
 
-  onButtonClick(repository: RepositoryWithStars) {
+  public onButtonClick(repository: RepositoryWithStars) {
     const emitter = repository.isStarred ? this.removeFromStars : this.addToStars;
     emitter.emit(repository);
   }
 
-  trackByRepositoryId(index: number, item: RepositoryWithStars): number {
+  public trackByRepositoryId(index: number, item: RepositoryWithStars): number {
     return item.id;
   }
 }

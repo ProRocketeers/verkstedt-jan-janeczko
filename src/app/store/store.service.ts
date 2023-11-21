@@ -9,7 +9,7 @@ const LS_STARRED_KEY = 'starred_repositories';
   providedIn: 'root'
 })
 export class StoreService {
-  static getInitState = (): AppState => ({
+  public static getInitState = (): AppState => ({
     repositories: {
       items: [],
       hasError: false,
@@ -18,7 +18,7 @@ export class StoreService {
     starred: []
   });
 
-  stateSubject: BehaviorSubject<AppState> = new BehaviorSubject<AppState>(StoreService.getInitState());
+  private readonly stateSubject: BehaviorSubject<AppState> = new BehaviorSubject<AppState>(StoreService.getInitState());
 
   constructor() {
     const cachedStarred = localStorage.getItem(LS_STARRED_KEY);
@@ -29,11 +29,11 @@ export class StoreService {
     }
   }
 
-  get state$(): Observable<AppState> {
+  public get state$(): Observable<AppState> {
     return this.stateSubject.asObservable().pipe(distinctUntilChanged());
   }
 
-  setRepositories(data: Partial<RepositoryState>) {
+  public setRepositories(data: Partial<RepositoryState>) {
     const state = this.stateSubject.value;
 
     this.stateSubject.next({
@@ -45,7 +45,7 @@ export class StoreService {
     });
   }
 
-  get repositories$(): Observable<RepositoryWithStars[]> {
+  public get repositories$(): Observable<RepositoryWithStars[]> {
     return this.state$.pipe(
       map(data => ({
         repositories: data.repositories.items,
@@ -63,15 +63,15 @@ export class StoreService {
     );
   }
 
-  get repositoriesLoading$(): Observable<boolean> {
+  public get repositoriesLoading$(): Observable<boolean> {
     return this.state$.pipe(map(data => data.repositories.isLoading));
   }
 
-  get repositoriesHasError$(): Observable<boolean> {
+  public get repositoriesHasError$(): Observable<boolean> {
     return this.state$.pipe(map(data => data.repositories.hasError));
   }
 
-  setStarred(repositories: Repository[]) {
+  public setStarred(repositories: Repository[]) {
     const state = this.stateSubject.value;
 
     this.stateSubject.next({
@@ -80,7 +80,7 @@ export class StoreService {
     });
   }
 
-  addToStarred(repository: Repository) {
+  public addToStarred(repository: Repository) {
     const state = this.stateSubject.value;
     const starred = state.starred;
 
@@ -96,7 +96,7 @@ export class StoreService {
     }
   }
 
-  removeFromStarred(repository: Repository) {
+  public removeFromStarred(repository: Repository) {
     const state = this.stateSubject.value;
     const starred = state.starred;
 
@@ -112,7 +112,7 @@ export class StoreService {
     }
   }
 
-  get starred$(): Observable<RepositoryWithStars[]> {
+  public get starred$(): Observable<RepositoryWithStars[]> {
     return this.state$.pipe(
       map(data => data.starred),
       mergeMap(repositories =>

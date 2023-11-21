@@ -13,14 +13,11 @@ export class AppComponent implements OnInit {
     private readonly storeService: StoreService
   ) {}
 
-  ngOnInit() {
-    // state log
-    this.storeService.state$.subscribe(state => console.log('state', state));
-
+  public ngOnInit() {
     this.loadData();
   }
 
-  loadData() {
+  private loadData() {
     this.storeService.setRepositories({
       isLoading: true,
       hasError: false,
