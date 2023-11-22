@@ -1,5 +1,3 @@
-# THIS IS NOT FINAL VERSION YET. UNIT TESTS NEEDS TO BE UPDATED!!!!!
-
 # Jan Janeczko GitHub Repositories
 
 ## Development server
