@@ -15,7 +15,14 @@ describe('RepositoryListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RepositoryListComponent],
-      imports: [CommonModule, CoreModule, MatToolbarModule, MatTableModule, MatButtonModule, RouterLink]
+      imports: [
+        CommonModule,
+        CoreModule,
+        MatToolbarModule,
+        MatTableModule,
+        MatButtonModule,
+        RouterLink
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(RepositoryListComponent);

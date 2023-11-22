@@ -14,7 +14,13 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HomeComponent],
-      imports: [RouterTestingModule, CommonModule, ComponentsModule, RouterLink, MatProgressSpinnerModule]
+      imports: [
+        RouterTestingModule,
+        CommonModule,
+        ComponentsModule,
+        RouterLink,
+        MatProgressSpinnerModule
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);

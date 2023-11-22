@@ -51,7 +51,9 @@ describe('ApiService', () => {
     const date = new Date();
     date.setDate(date.getDate() - 7);
     const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-    const url = encodeURI(`https://api.github.com/search/repositories?q=created:>${dateString}&sort=stars&order=desc`);
+    const url = encodeURI(
+      `https://api.github.com/search/repositories?q=created:>${dateString}&sort=stars&order=desc`
+    );
 
     const req = httpTestingController.expectOne(url);
 

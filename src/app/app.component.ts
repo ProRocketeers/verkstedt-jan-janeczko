@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
     this.loadData();
   }
 
-  private loadData() {
+  public loadData() {
     this.storeService.setRepositories({
       isLoading: true,
       hasError: false,

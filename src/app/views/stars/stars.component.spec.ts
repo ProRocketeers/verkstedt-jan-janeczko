@@ -14,7 +14,13 @@ describe('StarsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [StarsComponent],
-      imports: [RouterTestingModule, CommonModule, ComponentsModule, RouterLink, MatProgressSpinnerModule]
+      imports: [
+        RouterTestingModule,
+        CommonModule,
+        ComponentsModule,
+        RouterLink,
+        MatProgressSpinnerModule
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(StarsComponent);

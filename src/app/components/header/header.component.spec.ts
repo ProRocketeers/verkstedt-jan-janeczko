@@ -15,7 +15,14 @@ describe('HeaderComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HeaderComponent],
-      imports: [CommonModule, CoreModule, MatToolbarModule, MatTableModule, MatButtonModule, RouterLink]
+      imports: [
+        CommonModule,
+        CoreModule,
+        MatToolbarModule,
+        MatTableModule,
+        MatButtonModule,
+        RouterLink
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);

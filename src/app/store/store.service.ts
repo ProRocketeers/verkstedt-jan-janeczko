@@ -18,7 +18,9 @@ export class StoreService {
     starred: []
   });
 
-  private readonly stateSubject: BehaviorSubject<AppState> = new BehaviorSubject<AppState>(StoreService.getInitState());
+  private readonly stateSubject: BehaviorSubject<AppState> = new BehaviorSubject<AppState>(
+    StoreService.getInitState()
+  );
 
   constructor() {
     const cachedStarred = localStorage.getItem(LS_STARRED_KEY);
@@ -49,7 +51,9 @@ export class StoreService {
     return this.state$.pipe(
       map(data => ({
         repositories: data.repositories.items,
-        starredMap: new Map<number, Repository>(data.starred.map(repository => [repository.id, repository]))
+        starredMap: new Map<number, Repository>(
+          data.starred.map(repository => [repository.id, repository])
+        )
       })),
       mergeMap(({ repositories, starredMap }) =>
         from(repositories).pipe(

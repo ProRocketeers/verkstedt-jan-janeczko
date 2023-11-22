@@ -16,7 +16,15 @@ describe('LayoutComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LayoutComponent],
-      imports: [RouterTestingModule, CommonModule, CoreModule, MatToolbarModule, MatTableModule, MatButtonModule, RouterLink]
+      imports: [
+        RouterTestingModule,
+        CommonModule,
+        CoreModule,
+        MatToolbarModule,
+        MatTableModule,
+        MatButtonModule,
+        RouterLink
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(LayoutComponent);
